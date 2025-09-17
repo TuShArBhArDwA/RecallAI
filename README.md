@@ -1,6 +1,7 @@
 # RecallAI
 
-<img width="1918" height="1027" alt="image" src="https://github.com/user-attachments/assets/78571971-774f-4d7d-9f04-0e555672d5c5" />
+<img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/2de0da9e-135a-4aad-9f1d-6d7ac5762ae2" />
+
 
 
 A scalable conversational AI platform built with FastAPI and LangGraph, designed for multi-tenant deployments, advanced memory handling, and real-time voice chat via LiveKit.
