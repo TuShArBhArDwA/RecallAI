@@ -1,12 +1,16 @@
 # RecallAI
 
-A scalable AI chatbot platform built with FastAPI and LangGraph, featuring multi-agent orchestration, multi-tenant vector storage, cross-chat memory, and voice call capabilities through LiveKit integration.
+<img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/2de0da9e-135a-4aad-9f1d-6d7ac5762ae2" />
+
+
+
+A scalable conversational AI platform built with FastAPI and LangGraph, designed for multi-tenant deployments, advanced memory handling, and real-time voice chat via LiveKit.
 
 ---
 
 ## 📑 Table of Contents
-- [Demo](#demo)
-- [Key Features](#key-features)
+- [Overview](#overview)
+- [Core Highlights](#core-highlights)
 - [Backend Architecture](#backend-architecture)
 - [Usage Guide](#usage-guide)
 - [Installation](#installation)
@@ -18,159 +22,145 @@ A scalable AI chatbot platform built with FastAPI and LangGraph, featuring multi
 ---
 
 
-## Demo
-Coming soon...
+## Overview
+
+RecallAI combines modern backend architecture with advanced orchestration and memory features to deliver an intelligent chatbot system. It supports both text and voice interactions, enabling enterprises and developers to build AI assistants that remember past conversations, coordinate across multiple agents, and scale securely for multi-tenant environments.
 
 ---
 
-## Key Features
+## Core Highlights
 
-### 🔒 Secure Authentication & Multi-Tenancy
+### Authentication & Multi-Tenancy
+- OAuth2 authentication with JWT tokens
+- User registration and tenant isolation for secure data handling
+- Role-based permissions for fine-grained access control
 
-- **OAuth2 Password Flow**: Industry-standard authentication with JWT tokens for secure API access
-- **User Registration System**: Complete registration flow with username, password, and tenant_id
-- **Multi-Tenant Architecture**: Data isolation between different tenants for enhanced security and privacy
-- **Role-Based Access Control**: Granular permissions for different user types
+### Multi-Agent Orchestration (LangGraph)
+- Supervisor agent for workflow coordination
+- Research agent for knowledge retrieval
+- Scraper agent for summarizing web content
+- Handles multi-step workflows with persistent context
 
-### 🧠 Advanced AI Orchestration with LangGraph
+### Vector Search with Qdrant
+- Tenant-specific vector storage for embeddings
+- Semantic search across conversation history
+- Metadata and payload filtering for efficient lookups
 
-- **Multi-Agent System**: Specialized agents working together to solve complex tasks
-  - **Supervisor Agent**: Coordinates workflow and delegates tasks to specialized agents
-  - **Research Agent**: Retrieves information from the web and knowledge bases
-  - **Scraper Agent**: Extracts and summarizes content from web pages
-- **Complex Workflows**: Handle multistep reasoning and task decomposition
-- **State Management**: Maintain conversation context across multiple turns
+### Persistent Memory (Mem0)
+- Cross-session and cross-chat memory
+- Selective long-term storage of key facts
+- Context-aware retrieval of relevant memory
 
-### 📊 Powerful Vector Storage with Qdrant
+### MCP Tool Integration
+- Firecrawl for structured web scraping and summarization
+- Tavily for semantic, real-time web search
 
-- **Multi-Tenant Vector Store**: Efficiently store and retrieve conversation history with tenant isolation
-- **Semantic Search**: Find relevant past conversations using semantic similarity
-- **Payload Filtering**: Efficient filtering by tenant_id for data security and performance
-- **Metadata Storage**: Store and retrieve additional context alongside vector embeddings
+### Voice Mode (LiveKit)
+- Voice conversations powered by WebRTC
+- Deepgram STT and Cartesia TTS for natural speech
+- Voice activity detection for smooth interaction
+- Multilingual support
 
-### 💾 Persistent Memory with Mem0
+### Observability with LangSmith
+- Execution tracing and debugging
+- Token usage and latency monitoring
+- Feedback collection and experiment tracking
 
-- **Cross-Chat Memory**: Remember important information across different conversations
-- **Long-Term Context**: Maintain context over extended interactions
-- **Selective Memory**: Intelligently decide what information to remember
-- **Memory Retrieval**: Retrieve relevant memories based on conversation context
-
-### 🔍 MCP Tools Integration
-
-- **Firecrawl**: Advanced web scraping and content extraction
-  - Extract structured data from websites
-  - Summarize long-form content
-  - Process tables and lists
-- **Tavily**: Intelligent web search capabilities
-  - Semantic search across the web
-  - Real-time information retrieval
-  - Source attribution and citation
-
-### 🎤 Voice Assistant via LiveKit
-
-- **Real-Time Voice Communication**: Natural voice interaction using LiveKit's WebRTC platform
-- **High-Quality Speech Recognition**: Accurate transcription with Deepgram's advanced STT
-- **Natural Text-to-Speech**: Lifelike voice responses with Cartesia TTS
-- **Voice Activity Detection**: Intelligent turn-taking with Silero VAD
-- **Multilingual Support**: Voice interaction in multiple languages
-
-### 🔎 LangSmith Integration
-
-- **Comprehensive Tracing**: Capture detailed traces of all LangChain and LangGraph executions
-- **Visual Debugging**: Visualize the multi-agent workflow and message passing
-- **Performance Monitoring**: Track latency, token usage, and costs across different components
-- **Feedback Collection**: Gather and analyze user feedback on model responses
-- **Experiment Tracking**: Compare different prompts, models, and agent configurations
-
-### 🎨 Modern React UI
-
-- **Clean Material-UI Design**: Intuitive interface with modern design principles
-- **Responsive Layout**: Seamless experience across desktop and mobile devices
-- **Real-Time Chat Interface**: Dynamic message bubbles with user/assistant avatars
-- **Markdown Support**: Rich text formatting in messages
-- **Voice Mode Integration**: Seamless switching between text and voice interaction
+### Web UI
+- React frontend with Material UI
+- Responsive design with chat bubbles and avatars
+- Markdown rendering for rich responses
+- Switch between text and voice modes seamlessly
 
 ---
 
 ## Backend Architecture
 
-- **FastAPI Framework**: High-performance asynchronous API framework with automatic OpenAPI documentation
-- **SQLAlchemy ORM**: Async database operations with SQLite (configurable for PostgreSQL/MySQL)
-- **Pydantic Models**: Type-safe data validation and serialization
-- **JWT Authentication**: Secure token-based authentication with OAuth2 password flow
+- FastAPI backend with async APIs
+- SQLAlchemy + SQLite/Postgres for persistence
+- Qdrant for vector storage
+- Pydantic models for validation
+- JWT/OAuth2 for authentication
+- React frontend with real-time chat
 
 ---
-
 ## Usage Guide
 
 ### Getting Started
 
-1. **Register an Account**:
-   - Navigate to the registration page at `/register`
-   - Create an account with a unique username, secure password, and your assigned tenant_id
-   - Each tenant_id creates an isolated environment for your data
+1. **Sign Up**  
+   - Visit `/register` to create your account  
+   - Provide a username, password, and tenant_id  
+   - Each tenant_id ensures that your data remains isolated and private  
 
-2. **Login to the Platform**:
-   - Use your credentials to log in at the main page
-   - Your JWT token will be stored securely for later API calls
+2. **Log In**  
+   - Log in from the main page using your credentials  
+   - A JWT token is generated and stored securely for your API requests  
 
-### Using the Chat Interface
+---
 
-1. **Creating Conversations**:
-   - Click the "+" button in the sidebar to start a new conversation
-   - Give your conversation a meaningful title for easy reference
-   - Each conversation is stored with your tenant_id for data isolation
+### Chat Interface
 
-2. **Interacting with the AI**:
-   - Type your message in the input field and press Enter or click the send button
-   - The AI response will stream in real-time with token-by-token updates
-   - Messages are displayed with clear user/assistant avatars for easy distinction
-   - The system supports markdown formatting in both user and assistant messages
+1. **Start a New Conversation**  
+   - Use the "+" button in the sidebar to create a conversation  
+   - Assign a meaningful title for quick reference later  
+   - Conversations are saved under your tenant_id  
 
-3. **Managing Conversations**:
-   - Access previous conversations from the sidebar navigation
-   - Search through your conversation history
+2. **Chatting with the Assistant**  
+   - Enter a message in the text box and press Enter or click Send  
+   - Responses stream back in real-time, token by token  
+   - Messages include user/assistant avatars for clarity  
+   - Markdown is supported for formatting responses  
 
-### Using the Voice Assistant
+3. **Manage Conversations**  
+   - Access older chats directly from the sidebar  
+   - Search through past sessions easily  
 
-1. **Launching Voice Mode**:
-   - Click the microphone icon in the chat interface to activate voice mode
-   - The system will request microphone permissions if not already granted
-   - Wait for the "Voice Assistant Ready" message before speaking
+---
 
-2. **Voice Interaction**:
-   - Speak naturally when you see the "Listening..." indicator
-   - The assistant will process your speech and respond with voice
-   - Visual feedback shows the transcription of both your speech and the assistant's response
-   - The voice assistant supports natural turn-taking in conversation
+### Voice Assistant
 
-3. **Advanced Voice Features**:
-   - The system automatically detects when you've finished speaking
-   - Voice activity detection filters out background noise
-   - Multilingual support allows interaction in different languages
-   - Voice quality settings can be adjusted for different environments
+1. **Enable Voice Mode**  
+   - Click the microphone button in the chat window  
+   - Allow microphone access when prompted  
+   - Wait for the "Ready" indicator before speaking  
 
-4. **Ending a Voice Session**:
-   - Click the disconnect button to end the voice session
-   - Your conversation history is preserved for future reference
+2. **Voice Conversations**  
+   - Speak naturally when the "Listening..." message appears  
+   - The assistant transcribes and replies with speech  
+   - Both your speech and the AI’s response appear on screen  
 
-### Using External Tools
+3. **Extra Voice Features**  
+   - Automatic detection when you stop speaking  
+   - Noise filtering with voice activity detection (VAD)  
+   - Multilingual conversation support  
+   - Adjustable settings for voice quality  
 
-The AI assistant can leverage powerful external tools to enhance your experience:
+4. **Close Voice Session**  
+   - Click the disconnect button to end the session  
+   - All history remains saved with your account  
 
-1. **Web Search**: Ask questions that require up-to-date information from the web
-2. **Web Scraping**: Request summaries or information from specific websites
+---
+
+### External Tools
+
+The assistant can extend its capabilities through integrated tools:
+
+- **Web Search** – Retrieve fresh, up-to-date information  
+- **Web Scraping** – Summarize or extract details from specific pages  
 
 ---
 
 ## Installation
 
-### Prerequisites
+### Requirements
 
-- Python 3.13+
-- Node.js 16+
-- npm 8+
-- Qdrant (can be run via Docker)
+Before you begin, ensure you have the following installed:
+
+- Python 3.13 or higher
+- Node.js 16+ and npm 8+
+- Qdrant (local install or via Docker)
+
 
 ### Backend Setup
 
@@ -181,58 +171,60 @@ git clone https://github.com/TuShArBhArDwA/RecallAI
 cd RecallAI
 ```
 
-2. Create and activate a virtual environment
+2. Set Up a Virtual Environment
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# Activate
+source venv/bin/activate       # macOS/Linux
+venv\Scripts\activate          # Windows
 ```
 
-3. Install Python dependencies
+3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Set up environment variables
+4. Configure Environment Variables
 
-Create a `.env` file in the root directory with the following variables:
+Create a `.env` file in the project root with the following values:
 
 ```env
-# FastAPI settings
-SECRET_KEY=your_secret_key_here
+# FastAPI
+SECRET_KEY=your_secret_key
 ACCESS_TOKEN_EXPIRE_MINUTES=30
 
-# Database settings
+# Database
 SQLALCHEMY_DATABASE_URI=sqlite:///./app.db
 
-# OpenAI settings
-OPENAI_API_KEY=your_openai_api_key_here
+# OpenAI
+OPENAI_API_KEY=your_openai_api_key
 
-# Qdrant settings
+# Qdrant
 QDRANT_HOST=localhost
 QDRANT_PORT=6333
 
-# LiveKit settings
-LIVEKIT_URL=your_livekit_url_here
-LIVEKIT_API_KEY=your_livekit_api_key_here
-LIVEKIT_API_SECRET=your_livekit_api_secret_here
+# LiveKit
+LIVEKIT_URL=your_livekit_url
+LIVEKIT_API_KEY=your_livekit_api_key
+LIVEKIT_API_SECRET=your_livekit_api_secret
 
-# LangSmith (optional, for tracing)
+# LangSmith (optional)
 LANGCHAIN_TRACING_V2=true
-LANGSMITH_API_KEY=your_langsmith_api_key_here
+LANGSMITH_API_KEY=your_langsmith_api_key
 LANGSMITH_PROJECT=your_project_name
 ```
 
 ### Frontend Setup
 
-1. Navigate to the frontend directory
+1. Move to the frontend folder
 
 ```bash
 cd frontend
 ```
 
-2. Install Node.js dependencies
+2. Install Packages
 
 ```bash
 npm install
@@ -242,19 +234,19 @@ npm install
 
 ## Running the Application
 
-### Starting the Backend Services
+### Backend
 
-1. Start the MCP servers (in separate terminals)
+1. Start the MCP Tool Servers (each in a new terminal)
 
 ```bash
-# Terminal 1: Start the search server
+# Search service
 python -m app.mcp_server.search_server
 
-# Terminal 2: Start the web scraping server
+# Web scraping service
 python -m app.mcp_server.web_scrapping_server
 ```
 
-2. Start the main FastAPI server
+2. Start FastAPI
 
 ```bash
 python app.py
@@ -266,16 +258,15 @@ python app.py
 python app/agent/livekit_agent.py dev
 ```
 
-### Starting the Frontend
+### Frontend
 
 ```bash
 cd frontend
 npm start
 ```
 
-### Accessing the Application
+### Access
 
-- Backend API documentation: http://localhost:8000/docs
 - Frontend interface: http://localhost:3000
 
 
