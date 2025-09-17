@@ -2,19 +2,60 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="logo.jpg" type="image/jpeg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="LangGraph Chatbot - AI Assistant powered by FastAPI and LangGraph"
+      content="Recall AI - AI Assistant powered by FastAPI and LangGraph"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>LangGraph Chatbot</title>
+    <title>Recall AI</title>
+      <style>
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #root {
+        flex: 1; /* pushes footer to bottom */
+      }
+
+      footer {
+        text-align: center;
+        padding: 10px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        color: #555;
+      }
+
+      footer .heart {
+        color: red;
+      }
+
+      footer a {
+        color: blue;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <footer>
+      Made with <span class="heart">❤</span> by
+      <a href="https://tushar-bhardwaj.vercel.app/" target="_blank" rel="noopener noreferrer">
+        Tushar Bhardwaj
+      </a>
+    </footer>
   </body>
 </html>
