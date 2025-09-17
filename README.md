@@ -1,6 +1,7 @@
 # RecallAI
 
-<img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/2de0da9e-135a-4aad-9f1d-6d7ac5762ae2" />
+<img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/72560c59-e33a-46e5-a5d1-050f433a76be" />
+
 
 
 
