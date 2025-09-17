@@ -82,7 +82,7 @@ const Register = () => {
           }}
         >
           <Typography variant="h4" component="h1" align="center" gutterBottom>
-            LangGraph Chatbot
+            Recall AI Chatbot
           </Typography>
           
           <Typography variant="h6" component="h2" align="center" gutterBottom>
