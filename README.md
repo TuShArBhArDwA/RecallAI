@@ -1,10 +1,7 @@
 # RecallAI
 
-<video width="100%" controls>
-  <source src="demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
 
+https://github.com/user-attachments/assets/2a2e3786-7fb7-4ddc-9c5d-34c669d4945b
 
 
 A scalable conversational AI platform built with FastAPI and LangGraph, designed for multi-tenant deployments, advanced memory handling, and real-time voice chat via LiveKit.
